@@ -1,0 +1,1 @@
+module.exports = (args=process.argv.slice(2)) => require('./src')(args);

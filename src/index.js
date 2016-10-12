@@ -15,6 +15,7 @@ const rootDoc = `
 
     API RESOURCE ACCESS:
         activity       Activity resource.
+        user           User resource.
 
     'fbit help -a' list available subcommands.
     'fbit help <command>' to read about a specific subcommand.
@@ -25,12 +26,11 @@ const subCommandsDoc = `
         fbit (activity|user|devprofile|userprofile|help|bind) [<args>...]
 `;
 
-const init = () => {
-    const rootArgs = neodoc.run(rootDoc, {smartOptions:true, optionsFirst: true});
-    const subCommandArgs = neodoc.run(subCommandsDoc, {smartOptions:true, optionsFirst: true});
+module.exports = (args) => {
+    const options = {argv: args, smartOptions:true, optionsFirst: true};
+    const rootArgs = neodoc.run(rootDoc, options);
+    const subCommandArgs = neodoc.run(subCommandsDoc, options);
     const subCommandModuleName = rootArgs['<command>'];
     const subCommandModuleArgs = rootArgs['<args>'];
     return require(`./${subCommandModuleName}`)(subCommandModuleArgs);
 };
-
-init()
