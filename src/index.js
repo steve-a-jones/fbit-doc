@@ -1,15 +1,20 @@
 const neodoc = require('neodoc');
 
 const rootDoc = `
+    fbit : commandline access to the fitbit api.
+
     usage:
         fbit [--version] [--help] [<command> [<args>]...]
 
-    The most commonly used fbit commands are:
-       config     Manage your developer api access configuration.
-       profile    Manage user profiles.
-       auth       Authenticate api access for an individual user profile.
-       activity   Access the activity api resource.
-       user       Access the user api resource.
+    These are common fbit commands used in various situations:
+
+    CONFIGURATION:
+        devprofile     Manage developer api access.
+        userprofile    Manage user profiles.
+        bind           Bind a userprofile to a devprofile for api access.
+
+    API RESOURCE ACCESS:
+        activity       Activity resource.
 
     'fbit help -a' list available subcommands.
     'fbit help <command>' to read about a specific subcommand.
@@ -17,7 +22,7 @@ const rootDoc = `
 
 const subCommandsDoc = `
     usage:
-        fbit (activity|auth|config|help|profile|user) [<args>...]
+        fbit (activity|user|devprofile|userprofile|help|bind) [<args>...]
 `;
 
 const init = () => {
