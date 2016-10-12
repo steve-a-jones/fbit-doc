@@ -23,9 +23,9 @@ const subCommandsDoc = `
 const init = () => {
     const rootArgs = neodoc.run(rootDoc, {smartOptions:true, optionsFirst: true});
     const subCommandArgs = neodoc.run(subCommandsDoc, {smartOptions:true, optionsFirst: true});
-    return require(`./${rootArgs['<command>']}`)(
-        [rootArgs['<command>']].concat(rootArgs['<args>'])
-    );
+    const subCommandModuleName = rootArgs['<command>'];
+    const subCommandModuleArgs = rootArgs['<args>'];
+    return require(`./${subCommandModuleName}`)(subCommandModuleArgs);
 };
 
-init();
+init()
